@@ -10,7 +10,12 @@ resource "aws_instance" "neo4j_instance" {
 
   depends_on = [aws_lb.neo4j_lb]
 
-  //user_data = templatefile("test.tftpl", { lb_fqdn = "${aws_lb.neo4j_ssr_nlb.dns_name}" })
+  user_data = templatefile(
+    "${path.module}/neo4j.tftpl", 
+    { 
+      lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
+    }
+  )
 
   tags = {
     "Name"      = "${var.env_prefix}instance-${var.availability_zones[count.index]}"
