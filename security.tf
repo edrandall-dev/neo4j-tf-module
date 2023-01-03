@@ -10,6 +10,13 @@ resource "aws_security_group" "neo4j_sg" {
     cidr_blocks = ["${var.vpc_base_cidr}"]
   }
 
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # outbound internet access
   egress {
     from_port   = 0
