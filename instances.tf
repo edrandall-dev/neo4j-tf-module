@@ -14,6 +14,7 @@ resource "aws_instance" "neo4j_instance" {
     "${path.module}/neo4j.tftpl",
     {
       lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
+      gdb_ver = "${var.graphDatabaseVersion}"
     }
   )
 

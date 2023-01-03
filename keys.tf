@@ -1,6 +1,6 @@
 resource "random_id" "key_pair_name" {
   byte_length = 4
-  prefix      = "key-${var.env_prefix}"
+  prefix      = "${var.env_prefix}-ssh-key"
 }
 
 resource "aws_key_pair" "neo4j_ec2_key" {

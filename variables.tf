@@ -32,7 +32,6 @@ variable "instance_type" {
   description = "The type of EC2 instances to be deployed"
 }
 
-
 variable "public_key_path" {
   description = "The location of the public SSH key within the local environment"
 }
@@ -40,6 +39,11 @@ variable "public_key_path" {
 variable "private_key_path" {
   description = "The location of the private SSH key within the local environment"
 }
+
+variable "graphDatabaseVersion" {
+  description = "The Version of the Neo4j Graph Database to be installed"
+}
+
 
 /*
 variable "private_subnet_qty" {
