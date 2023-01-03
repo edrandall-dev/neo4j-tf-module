@@ -2,6 +2,9 @@
 A terraform module for the installation of an environment on which to run neo4j
 
 ## usage
+
+The module can be used by creating a parent module, as follows:
+
 ~~~
 module "neo4j-environment" {
   source             = "../neo4j-tf-module"
@@ -19,7 +22,9 @@ module "neo4j-environment" {
 
 output "ssh_commands_for_each_instance" {
   value = [  
-    for key, value in module.neo4j-environment.all_ips: "ssh -i ${module.neo4j-environment.key_path} ec2-user@${value}"
+    for key, value in module.neo4j-environment.all_ips: "ssh -o StrictHostKeyChecking=no -i ${module.neo4j-environment.key_path} ec2-user@${value}"
   ]
 }
 ~~~
+
+Both AWS and Terraform commands need to be installed and properly configured before deploying.

@@ -48,14 +48,14 @@ resource "aws_lb_target_group" "neo4j_bolt_lb_tg" {
 }
 
 resource "aws_lb_target_group_attachment" "neo4j_http_lb_tg_attachment" {
-  count = var.instance_qty
+  count            = var.instance_qty
   target_group_arn = aws_lb_target_group.neo4j_http_lb_tg.arn
   target_id        = aws_instance.neo4j_instance[count.index].id
   port             = 7474
 }
 
 resource "aws_lb_target_group_attachment" "neo4j_bolt_lb_tg_attachment" {
-  count = var.instance_qty
+  count            = var.instance_qty
   target_group_arn = aws_lb_target_group.neo4j_bolt_lb_tg.arn
   target_id        = aws_instance.neo4j_instance[count.index].id
   port             = 7687
