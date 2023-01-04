@@ -10,7 +10,7 @@ resource "aws_vpc" "neo4j_vpc" {
 }
 
 resource "aws_subnet" "neo4j_public_subnet" {
-  count = var.instance_qty
+  count = var.nodeCount
 
   vpc_id                  = aws_vpc.neo4j_vpc.id
   cidr_block              = cidrsubnet(var.vpc_base_cidr, 8, count.index + 1)
@@ -47,7 +47,7 @@ resource "aws_route" "neo4j_public_subnet_route" {
 }
 
 resource "aws_route_table_association" "neo4j_public_route_assoc" {
-  count          = var.instance_qty
+  count          = var.nodeCount
   subnet_id      = aws_subnet.neo4j_public_subnet[count.index].id
   route_table_id = aws_route_table.neo4j_public_subnet_rt.id
 }

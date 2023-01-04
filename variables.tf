@@ -13,7 +13,7 @@ variable "env_name" {
   type        = string
 }
 
-variable "region" {
+variable "target_region" {
   description = "The region in which the environment will be deployed"
   type        = string
   default     = "us-east-1"
@@ -24,7 +24,7 @@ variable "availability_zones" {
   type        = list(string)
 }
 
-variable "instance_qty" {
+variable "nodeCount" {
   description = "The number of neo4j instances to be deployed"
 }
 

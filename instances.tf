@@ -1,5 +1,5 @@
 resource "aws_instance" "neo4j_instance" {
-  count                  = var.instance_qty
+  count                  = var.nodeCount
   ami                    = data.aws_ami.latest_amazon.id
   instance_type          = var.instance_type
   key_name               = aws_key_pair.neo4j_ec2_key.id
@@ -11,7 +11,7 @@ resource "aws_instance" "neo4j_instance" {
   depends_on = [aws_lb.neo4j_lb]
 
   user_data = templatefile(
-    "${path.module}/neo4j.tftpl",
+    "${path.module}/cloud-init.tftpl",
     {
       lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
       gdb_ver = "${var.graphDatabaseVersion}"
