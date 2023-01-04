@@ -16,7 +16,5 @@ runcmd:
  - [ find, /var/www, -type, d, -exec, chmod, 2775, {}, \; ]
  - [ find, /var/www, -type, f, -exec, chmod, 0664, {}, \; ]
  - [ sh, -c, 'echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php' ]
- - [ sh, -c, 'echo "The Load Balancer's FQDN = ${lb_fqdn} >> /tmp/test.out' ]
- - [ sh -c,  'echo "Graph Database Version will be ${gdb_ver}" >> /tmp/test.out' ]
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
