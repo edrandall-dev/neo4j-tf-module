@@ -1,3 +1,12 @@
+Content-Type: multipart/mixed; boundary="//"
+MIME-Version: 1.0
+
+--//
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
 #cloud-config
 repo_update: true
 repo_upgrade: all
@@ -18,3 +27,16 @@ runcmd:
  - [ sh, -c, 'echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php' ]
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
+
+--//
+Content-Type: text/x-shellscript; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="userdata.txt"
+
+#!/bin/bash
+echo "The Load Balancer's FQDN = ${lb_fqdn}" >> /tmp/test.out
+echo "Graph Database Version will be ${gdb_ver}" >> /tmp/test.out
+--//--
+
+ 
