@@ -22,11 +22,6 @@ module "neo4j-environment" {
   private_key_path = "~/.ssh/aws-test"
 }
 
-output "ssh_commands_for_each_instance" {
-  value = [  
-    for key, value in module.neo4j-environment.all_ips: "ssh -o StrictHostKeyChecking=no -i ${module.neo4j-environment.key_path} ec2-user@${value}"
-  ]
-}
 ~~~
 
 Both AWS and Terraform commands need to be installed and properly configured before deploying.
