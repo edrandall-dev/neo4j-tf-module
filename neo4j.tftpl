@@ -12,7 +12,7 @@ graphDataScienceLicenseKey=${graph_data_science_license_key}
 installBloom=${install_bloom}
 bloomLicenseKey=${bloom_license_key}
 password=${neo4j_password}
-nodeCount=${node_count}
+node_count=${node_count}
 loadBalancerDNSName=${lb_fqdn}
 region=${target_region}
 
@@ -79,14 +79,14 @@ build_neo4j_conf_file() {
   echo "server.metrics.filter=*" >> /etc/neo4j/neo4j.conf
   echo "server.metrics.csv.interval=5s" >> /etc/neo4j/neo4j.conf
   echo "dbms.routing.default_router=SERVER" >> /etc/neo4j/neo4j.conf
-  if [[ ${nodeCount} == 1 ]]; then
+  if [[ ${node_count} == 1 ]]; then
     echo "Running on a single node."
   else
     echo "Running on multiple nodes.  Configuring membership in neo4j.conf..."
     sed -i s/#initial.dbms.default_primaries_count=1/initial.dbms.default_primaries_count=3/g /etc/neo4j/neo4j.conf
-    sed -i s/#initial.dbms.default_secondaries_count=0/initial.dbms.default_secondaries_count=$(expr ${nodeCount} - 3)/g /etc/neo4j/neo4j.conf
+    sed -i s/#initial.dbms.default_secondaries_count=0/initial.dbms.default_secondaries_count=$(expr ${node_count} - 3)/g /etc/neo4j/neo4j.conf
     sed -i s/#server.bolt.listen_address=:7687/server.bolt.listen_address="${privateIP}":7687/g /etc/neo4j/neo4j.conf
-    echo "dbms.cluster.minimum_initial_system_primaries_count=${nodeCount}" >> /etc/neo4j/neo4j.conf
+    echo "dbms.cluster.minimum_initial_system_primaries_count=${node_count}" >> /etc/neo4j/neo4j.conf
     instanceId=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
     coreMembers=$(aws autoscaling describe-auto-scaling-instances --region $region --output text --query "AutoScalingInstances[?contains(AutoScalingGroupName,'$stackName-Neo4jAutoScalingGroup')].[InstanceId]" | xargs -n1 -I {} aws ec2 describe-instances --instance-ids {} --region $region --query "Reservations[].Instances[].PrivateIpAddress" --output text --filter "Name=tag:aws:cloudformation:stack-name,Values=$stackName")
     coreMembers=$(echo ${coreMembers} | sed 's/ /:5000,/g')
@@ -96,7 +96,7 @@ build_neo4j_conf_file() {
 }
 
 configure_graph_data_science() {
-  if [[ "${installGraphDataScience}" == True && "${nodeCount}" == 1 ]]; then
+  if [[ "${installGraphDataScience}" == True && "${node_count}" == 1 ]]; then
     echo "Installing Graph Data Science..."
     cp /var/lib/neo4j/products/neo4j-graph-data-science-*.jar /var/lib/neo4j/plugins
   fi

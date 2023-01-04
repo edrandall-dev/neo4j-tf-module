@@ -1,5 +1,5 @@
 resource "aws_instance" "neo4j_instance" {
-  count                  = var.nodeCount
+  count                  = var.node_count
   ami                    = data.aws_ami.latest_amazon.id
   instance_type          = var.instance_type
   key_name               = aws_key_pair.neo4j_ec2_key.id
@@ -14,7 +14,7 @@ resource "aws_instance" "neo4j_instance" {
     "${path.module}/cloud-init.tftpl",
     {
       lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
-      gdb_ver = "${var.graphDatabaseVersion}"
+      gdb_ver = "${var.graph_database_version}"
     }
   )
 

@@ -15,7 +15,7 @@ module "neo4j-environment" {
 
   graph_database_version = "5.3.0"
   install_graph_dataScience = "false"
-  graph_data_science_license_key= ""
+  graph_data_science_license_key = ""
   install_bloom = "false"
   bloom_license_key= ""
   neo4j_password="foo1234!"
