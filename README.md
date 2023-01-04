@@ -14,13 +14,13 @@ module "neo4j-environment" {
   availability_zones = ["a", "b", "c"]
 
   graph_database_version = "5.3.0"
-  install_graph_dataScience = "false"
-  graph_data_science_license_key = ""
+  install_graph_data_science = "false"
+  graph_data_science_license_key= ""
   install_bloom = "false"
   bloom_license_key= ""
   neo4j_password="foo1234!"
   node_count  = 3
-  
+
   instance_type = "t3.micro"
   public_key_path = "~/.ssh/aws-test.pub"
   private_key_path = "~/.ssh/aws-test"
