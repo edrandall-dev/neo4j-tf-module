@@ -12,8 +12,15 @@ repo_update: true
 repo_upgrade: all
 
 packages:
- - httpd
- - mariadb-server
+ - neo4j-enterprise
+
+yum_repos:
+  neo4j:
+    name: neo4j enterprise
+    base_url: http://yum.neo4j.com/stable/5
+    enable_gpgcheck: true
+    enabled: true
+    gpgkey: https://debian.neo4j.com/neotechnology.gpg.key
 
 runcmd:
  - [ sh, -c, "amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" ]
