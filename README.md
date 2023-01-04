@@ -22,6 +22,10 @@ module "neo4j-environment" {
   private_key_path = "~/.ssh/aws-test"
 }
 
+output "ssh_commands" {
+  value = module.neo4j-environment.ssh_commands
+}
+
 ~~~
 
 Both AWS and Terraform commands need to be installed and properly configured before deploying, an example provider.tf file is shown below:
