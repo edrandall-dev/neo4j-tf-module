@@ -23,15 +23,7 @@ yum_repos:
     gpgkey: https://debian.neo4j.com/neotechnology.gpg.key
 
 runcmd:
- - [ sh, -c, "amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2" ]
- - systemctl start httpd
- - sudo systemctl enable httpd
- - [ sh, -c, "usermod -a -G apache ec2-user" ]
- - [ sh, -c, "chown -R ec2-user:apache /var/www" ]
- - chmod 2775 /var/www
- - [ find, /var/www, -type, d, -exec, chmod, 2775, {}, \; ]
- - [ find, /var/www, -type, f, -exec, chmod, 0664, {}, \; ]
- - [ sh, -c, 'echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php' ]
+ - [ sh, -c, "echo hello" ]
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
 
