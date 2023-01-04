@@ -11,9 +11,6 @@ Content-Disposition: attachment; filename="cloud-config.txt"
 repo_update: true
 repo_upgrade: all
 
-packages:
- - neo4j-enterprise
-
 yum_repos:
     neo4j:
         baseurl: http://yum.neo4j.com/stable/5
@@ -23,8 +20,11 @@ yum_repos:
         gpgkey: https://debian.neo4j.com/neotechnology.gpg.key
         name: Neo4j
 
+packages:
+  - neo4j-enterprise
+
 runcmd:
- - [ sh, -c, "echo hello" ]
+  - [ export, NEO4J_ACCEPT_LICENSE_AGREEMENT=yes ]
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
 
