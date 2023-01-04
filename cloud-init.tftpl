@@ -15,12 +15,13 @@ packages:
  - neo4j-enterprise
 
 yum_repos:
-  neo4j:
-    name: neo4j enterprise
-    base_url: http://yum.neo4j.com/stable/5
-    enable_gpgcheck: true
-    enabled: true
-    gpgkey: https://debian.neo4j.com/neotechnology.gpg.key
+    neo4j:
+        baseurl: http://yum.neo4j.com/stable/5
+        enabled: true
+        failovermethod: priority
+        gpgcheck: true
+        gpgkey: https://debian.neo4j.com/neotechnology.gpg.key
+        name: Neo4j
 
 runcmd:
  - [ sh, -c, "echo hello" ]
