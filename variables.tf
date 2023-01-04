@@ -52,7 +52,7 @@ variable "install_bloom" {
   description = "Variable to determine if Neo4j Bloom will be installed"
 }
 
-variable "bloom_license_key=" {
+variable "bloom_license_key" {
   description = "License Key for Bloom"
 }
 
