@@ -14,7 +14,7 @@ module "neo4j-environment" {
   region             = "us-east-1"
   availability_zones = ["a", "b", "c"]
 
-  graphDatabaseVersion = 5.3.0
+  graphDatabaseVersion = "5.3.0"
 
   instance_qty  = 3
   instance_type = "t3.micro"
