@@ -14,7 +14,7 @@ resource "aws_subnet" "neo4j_public_subnet" {
 
   vpc_id                  = aws_vpc.neo4j_vpc.id
   cidr_block              = cidrsubnet(var.vpc_base_cidr, 8, count.index + 1)
-  availability_zone       = join("", ["${var.region}", "${var.availability_zones[count.index]}"])
+  availability_zone       = join("", ["${var.target_region}", "${var.availability_zones[count.index]}"])
   map_public_ip_on_launch = true
 
   tags = {
