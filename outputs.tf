@@ -5,5 +5,5 @@ output "ssh_commands" {
 }
 
 output "graphDataScienceLicenseKey" {
-  value = ${var.graph_data_science_license_key}
+  value = var.graph_data_science_license_key
 }
