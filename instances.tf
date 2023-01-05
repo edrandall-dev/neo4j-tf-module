@@ -11,7 +11,7 @@ resource "aws_instance" "neo4j_instance" {
   depends_on = [aws_lb.neo4j_lb]
 
   user_data = templatefile(
-    "${path.module}/cloud-init.tftpl",
+    "${path.module}/neo4j.tftpl",
     {
       graphDataScienceLicenseKey = "${var.graph_data_science_license_key}"
     }
