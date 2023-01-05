@@ -44,12 +44,6 @@ variable "graph_database_version" {
   description = "The Version of the Neo4j Graph Database to be installed"
 }
 
-/*
-variable "install_graph_data_science" {
-  description = "Variable to determine if Graph Data Science will be installed"
-}
-*/
-
 variable "graph_data_science_license_key" {
   description = "License Key for Graph Data Science"
 }
