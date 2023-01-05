@@ -6,23 +6,19 @@ The module can be used by creating a parent module, as follows:
 
 ~~~
 module "neo4j-environment" {
-  source             = "github.com/edrandall-dev/neo4j-tf-module"
+  source = "../neo4j-tf-module"
+  //source           = "github.com/edrandall-dev/neo4j-tf-module"
+  node_count         = "3"
   env_name           = "First Test Neo4j Env"
   vpc_base_cidr      = "10.123.0.0/16"
   env_prefix         = "neo4j-test-mod"
   target_region      = "us-east-1"
   availability_zones = ["a", "b", "c"]
 
-  graph_database_version = "5.3.0"
-  install_graph_data_science = "false"
-  graph_data_science_license_key= ""
-  install_bloom = "false"
-  bloom_license_key= ""
-  neo4j_password="foo1234!"
-  node_count  = 3
+  gds_key= "thisismykey"
 
-  instance_type = "t3.micro"
-  public_key_path = "~/.ssh/aws-test.pub"
+  instance_type    = "t3.micro"
+  public_key_path  = "~/.ssh/aws-test.pub"
   private_key_path = "~/.ssh/aws-test"
 }
 

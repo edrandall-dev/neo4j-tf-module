@@ -4,6 +4,6 @@ output "ssh_commands" {
   ]
 }
 
-output "graphDataScienceLicenseKey" {
-  value = var.graph_data_science_license_key
+output "gds_key_out" {
+  value = var.gds_key
 }

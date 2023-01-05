@@ -7,13 +7,13 @@ resource "aws_instance" "neo4j_instance" {
   vpc_security_group_ids = ["${aws_security_group.neo4j_sg.id}"]
 
   //iam_instance_profile = aws_iam_instance_profile.neo4j_ssr_ssm_instance_profile.name
-
-  //depends_on = [aws_lb.neo4j_lb]
+  depends_on = [aws_lb.neo4j_lb]
 
   user_data = templatefile(
     "${path.module}/neo4j.tftpl",
     {
-      graphDataScienceLicenseKey = "${var.graph_data_science_license_key}"
+      gdsLic = "${var.gds_key}"
+      lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
     }
   )
 

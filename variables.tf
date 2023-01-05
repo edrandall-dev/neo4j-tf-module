@@ -40,6 +40,6 @@ variable "private_key_path" {
   description = "The location of the private SSH key within the local environment"
 }
 
-variable "graph_data_science_license_key" {
+variable "gds_key" {
   description = "License Key for Graph Data Science"
 }

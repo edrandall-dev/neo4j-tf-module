@@ -1,7 +1,9 @@
 #!/bin/bash
 
 #Variable Test
-echo "GDS Key: $graphDataScienceLicenseKey" >> /tmp/test.out
+
+#echo "GDS Key: $gdsLic" >> /tmp/test.out
+echo "GDS Key: ${gdsLic}" >> /tmp/test.out
 
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key
