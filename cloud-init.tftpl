@@ -1,6 +1,24 @@
 #!/bin/bash
-echo "The Load Balancer's FQDN = ${lb_fqdn}" >> /tmp/test.out
-echo "Graph Database Version will be ${gdb_ver}" >> /tmp/test.out
+
+#Variable Test
+installGraphDataScience=${install_graph_dataScience}
+graphDataScienceLicenseKey=${graph_data_science_license_key}
+installBloom=${install_bloom}
+bloomLicenseKey=${bloom_license_key}
+password=${neo4j_password}
+node_count=${node_count}
+loadBalancerDNSName=${lb_fqdn}
+region=${target_region}
+
+echo "installGraphDataScience $installGraphDataScience" >> /tmp/test.out
+echo "graphDataScienceLicenseKey $graphDataScienceLicenseKey" >> /tmp/test.out
+echo "installBloom $installBloom" >> /tmp/test.out
+echo "password $password" >> /tmp/test.out
+echo "node_count $node_count" >> /tmp/test.out
+echo "loadBalancerDNSName $loadBalancerDNSName" >> /tmp/test.out
+echo "region $region" >> /tmp/test.out
+echo "gdb_ver $gdb_ver" >> /tmp/test.out
+echo "lb_fqdn = $lb_fqdn" >> /tmp/test.out
 
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key
@@ -14,3 +32,4 @@ gpgcheck=1
 EOF
 export NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 yum install -y neo4j-enterprise 
+
