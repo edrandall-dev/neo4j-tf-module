@@ -11,6 +11,9 @@ Content-Disposition: attachment; filename="cloud-config.txt"
 repo_update: true
 repo_upgrade: all
 
+runcmd:
+  - [ export, NEO4J_ACCEPT_LICENSE_AGREEMENT=yes ]
+
 yum_repos:
     neo4j:
         baseurl: http://yum.neo4j.com/stable/5
@@ -22,9 +25,6 @@ yum_repos:
 
 packages:
   - neo4j-enterprise
-
-runcmd:
-  - [ export, NEO4J_ACCEPT_LICENSE_AGREEMENT=yes ]
 
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
 
