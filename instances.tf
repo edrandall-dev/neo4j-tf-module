@@ -14,12 +14,6 @@ resource "aws_instance" "neo4j_instance" {
     "${path.module}/cloud-init.tftpl",
     {
       graphDataScienceLicenseKey = "${var.graph_data_science_license_key}"
-      installBloom = "${var.install_bloom}"
-      bloomLicenseKey = "${var.bloom_license_key}"
-      password = "${var.neo4j_password}"
-      nodeCount = "${var.node_count}"
-      loadBalancerDNSName = "${aws_lb.neo4j_lb.dns_name}"
-      region = "${var.target_region}"
     }
   )
 

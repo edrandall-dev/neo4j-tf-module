@@ -40,31 +40,6 @@ variable "private_key_path" {
   description = "The location of the private SSH key within the local environment"
 }
 
-variable "graph_database_version" {
-  description = "The Version of the Neo4j Graph Database to be installed"
-}
-
 variable "graph_data_science_license_key" {
   description = "License Key for Graph Data Science"
 }
-
-variable "install_bloom" {
-  description = "Variable to determine if Neo4j Bloom will be installed"
-}
-
-variable "bloom_license_key" {
-  description = "License Key for Bloom"
-}
-
-variable "neo4j_password" {
-  description = "DB Password for the Neo4j User"
-}
-
-
-
-
-/*
-variable "private_subnet_qty" {
-  description = "The number of private subnets to be deployed"
-}
-*/

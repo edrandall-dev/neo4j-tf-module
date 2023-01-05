@@ -1,21 +1,7 @@
 #!/bin/bash
 
 #Variable Test
-installBloom=${install_bloom}
-bloomLicenseKey=${bloom_license_key}
-password=${neo4j_password}
-node_count=${node_count}
-loadBalancerDNSName=${lb_fqdn}
-region=${target_region}
-
-echo "installBloom $installBloom" >> /tmp/test.out
-echo "password $password" >> /tmp/test.out
-echo "node_count $node_count" >> /tmp/test.out
-echo "loadBalancerDNSName $loadBalancerDNSName" >> /tmp/test.out
-echo "region $region" >> /tmp/test.out
-
-echo "gdb_ver $gdb_ver" >> /tmp/test.out
-echo "lb_fqdn = $lb_fqdn" >> /tmp/test.out
+echo "GDS Key: $graphDataScienceLicenseKey" >> /tmp/test.out
 
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key
