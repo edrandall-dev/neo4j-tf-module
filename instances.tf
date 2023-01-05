@@ -13,7 +13,7 @@ resource "aws_instance" "neo4j_instance" {
   user_data = templatefile(
     "${path.module}/cloud-init.tftpl",
     {
-      installGraphDataScience = "${var.install_graph_data_science}"
+      //installGraphDataScience = "${var.install_graph_data_science}"
       graphDataScienceLicenseKey = "${var.graph_data_science_license_key}"
       installBloom = "${var.install_bloom}"
       bloomLicenseKey = "${var.bloom_license_key}"
