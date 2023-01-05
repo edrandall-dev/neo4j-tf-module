@@ -13,8 +13,15 @@ resource "aws_instance" "neo4j_instance" {
   user_data = templatefile(
     "${path.module}/cloud-init.tftpl",
     {
-      lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
-      gdb_ver = "${var.graph_database_version}"
+      lbFQDN = "${aws_lb.neo4j_lb.dns_name}"
+      installGraphDataScience = "${var.install_graph_data_science}"
+      graphDataScienceLicenseKey = "${var.graph_data_science_license_key}"
+      installBloom = "${var.install_bloom}"
+      bloomLicenseKey = "${var.bloom_license_key}"
+      password = "${var.neo4j_password}"
+      nodeCount = "${var.node_count}"
+      loadBalancerDNSName = "${var.lb_fqdn}"
+      region = "${var.target_region}"
     }
   )
 
