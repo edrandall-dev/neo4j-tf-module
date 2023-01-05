@@ -8,7 +8,7 @@ resource "aws_instance" "neo4j_instance" {
 
   //iam_instance_profile = aws_iam_instance_profile.neo4j_ssr_ssm_instance_profile.name
 
-  depends_on = [aws_lb.neo4j_lb]
+  //depends_on = [aws_lb.neo4j_lb]
 
   user_data = templatefile(
     "${path.module}/neo4j.tftpl",
