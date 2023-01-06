@@ -15,7 +15,13 @@ module "neo4j-environment" {
   target_region      = "us-east-1"
   availability_zones = ["a", "b", "c"]
 
-  gds_key= "thisismykey"
+
+  install_gds = "true"
+  install_bloom = "true"
+  gds_key= "this-is-the-gds-key"
+  bloom_key = "this-is-the-bloom-key"
+  neo4j_password = "TestPW123!"
+  install_apoc = "true"
 
   instance_type    = "t3.micro"
   public_key_path  = "~/.ssh/aws-test.pub"
@@ -25,7 +31,6 @@ module "neo4j-environment" {
 output "ssh_commands" {
   value = module.neo4j-environment.ssh_commands
 }
-
 ~~~
 
 Both AWS and Terraform commands need to be installed and properly configured before deploying, an example provider.tf file is shown below:
