@@ -23,3 +23,7 @@ output "bloom_key_output" {
 output "neo4j_password_output" {
   value = var.neo4j_password
 }
+
+output "install_apoc_output" {
+  value = var.install_apoc
+}

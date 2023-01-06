@@ -60,4 +60,6 @@ variable "neo4j_password" {
   description = "Password for the neo4j user"
 }
 
-
+variable "install_apoc" {
+  description = "Determine if the APOC library is required"
+}

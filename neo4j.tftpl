@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#Variable Test
-
+# 0 - Variable Test
 TESTFILE=/home/ec2-user/vars.out
 touch $TESTFILE
 
@@ -11,7 +10,9 @@ echo "Install GDS: ${installGDS}" >> $TESTFILE
 echo "GDS Key: ${gdsKey}" >> $TESTFILE
 echo "Bloom Key: ${bloomKey}" >> $TESTFILE
 echo "Password: ${password}" >> $TESTFILE
+echo "Install APOC: ${installAPOC} >> $TESTFILE
 
+# 1 - Install Neo4j
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key
 
@@ -24,3 +25,21 @@ gpgcheck=1
 EOF
 export NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 yum install -y neo4j-enterprise
+
+if [ $installAPOC == "true" ] ; then
+  mv /var/lib/neo4j/labs/apoc-*-core.jar /var/lib/neo4j/plugins
+fi
+ 
+# 2 - Configure Neo4j
+
+echo Configuring extensions and security in neo4j.conf...
+sed -i s~#server.unmanaged_extension_classes=org.neo4j.examples.server.unmanaged=/examples/unmanaged~server.unmanaged_extension_classes=com.neo4j.bloom.server=/bloom,semantics.extension=/rdf~g /etc/neo4j/neo4j.conf
+sed -i s/#dbms.security.procedures.unrestricted=my.extensions.example,my.procedures.*/dbms.security.procedures.unrestricted=gds.*,apoc.*,bloom.*/g /etc/neo4j/neo4j.conf
+echo "dbms.security.http_auth_allowlist=/,/browser.*,/bloom.*" >> /etc/neo4j/neo4j.conf
+echo "dbms.security.procedures.allowlist=apoc.*,gds.*,bloom.*" >> /etc/neo4j/neo4j.conf
+
+
+
+#3 - Start (and enable) Neo4j
+systemctl start neo4j
+systemctl enable neo4j
