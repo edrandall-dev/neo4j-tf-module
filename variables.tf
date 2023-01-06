@@ -56,3 +56,8 @@ variable "bloom_key" {
   description = "License Key for Bloom"
 }
 
+variable "neo4j_password" {
+  description = "Password for the neo4j user"
+}
+
+

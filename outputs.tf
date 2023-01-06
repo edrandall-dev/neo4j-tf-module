@@ -19,3 +19,7 @@ output "gds_key_output" {
 output "bloom_key_output" {
   value = var.bloom_key
 }
+
+output "neo4j_password_output" {
+  value = var.neo4j_password
+}

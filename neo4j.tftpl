@@ -1,13 +1,16 @@
 #!/bin/bash
 
 #Variable Test
-echo "LB FQDN: ${lb_fqdn}" >> /tmp/test.out
-echo "Install Bloom: ${installBloom}" >> /tmp/test.out
-echo "Install GDS: ${installGDS}" >> /tmp/test.out
 
-echo "GDS Key: ${gdsKey}" >> /tmp/test.out
-echo "Bloom Key: ${bloomKey}" >> /tmp/test.out
+TESTFILE=/home/ec2-user/vars.out
+touch $TESTFILE
 
+echo "LB FQDN: ${lb_fqdn}" >> $TESTFILE
+echo "Install Bloom: ${installBloom}" >> $TESTFILE
+echo "Install GDS: ${installGDS}" >> $TESTFILE
+echo "GDS Key: ${gdsKey}" >> $TESTFILE
+echo "Bloom Key: ${bloomKey}" >> $TESTFILE
+echo "Password: ${password}" >> $TESTFILE
 
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key

@@ -17,6 +17,7 @@ resource "aws_instance" "neo4j_instance" {
       installBloom = var.install_bloom
       gdsKey = var.gds_key
       bloomKey = var.bloom_key
+      password = var.neo4j_password
     }
   )
 
