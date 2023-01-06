@@ -1,8 +1,13 @@
 #!/bin/bash
 
 #Variable Test
-echo "GDS Key: ${gdsLic}" >> /tmp/test.out
 echo "LB FQDN: ${lb_fqdn}" >> /tmp/test.out
+echo "Install Bloom: ${installBloom}" >> /tmp/test.out
+echo "Install GDS: ${installGDS}" >> /tmp/test.out
+
+echo "GDS Key: ${gdsKey}" >> /tmp/test.out
+echo "Bloom Key: ${bloomKey}" >> /tmp/test.out
+
 
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key

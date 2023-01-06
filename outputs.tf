@@ -4,6 +4,18 @@ output "ssh_commands" {
   ]
 }
 
-output "gds_key_out" {
+output "install_gds_output" {
+  value = var.install_gds
+}
+
+output "install_bloom_output" {
+  value = var.install_bloom
+}
+
+output "gds_key_output" {
   value = var.gds_key
+}
+
+output "bloom_key_output" {
+  value = var.bloom_key
 }

@@ -12,8 +12,11 @@ resource "aws_instance" "neo4j_instance" {
   user_data = templatefile(
     "${path.module}/neo4j.tftpl",
     {
-      gdsLic = "${var.gds_key}"
-      lb_fqdn = "${aws_lb.neo4j_lb.dns_name}"
+      lb_fqdn = aws_lb.neo4j_lb.dns_name
+      installGDS = var.install_gds
+      installBloom = var.install_bloom
+      gdsKey = var.gds_key
+      bloomKey = var.bloom_key
     }
   )
 

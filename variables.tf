@@ -40,6 +40,19 @@ variable "private_key_path" {
   description = "The location of the private SSH key within the local environment"
 }
 
+variable "install_gds" {
+  description = "Determine if GDS is required"
+}
+
+variable "install_bloom" {
+  description = "Determine if Bloom is required"
+}
+
 variable "gds_key" {
   description = "License Key for Graph Data Science"
 }
+
+variable "bloom_key" {
+  description = "License Key for Bloom"
+}
+
