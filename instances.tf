@@ -21,6 +21,7 @@ resource "aws_instance" "neo4j_instance" {
       bloomKey = var.bloom_key
       password = var.neo4j_password
       installAPOC = var.install_apoc
+      nodeCount = var.node_count
     }
   )
 

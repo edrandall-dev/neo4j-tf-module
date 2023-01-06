@@ -27,3 +27,7 @@ output "neo4j_password_output" {
 output "install_apoc_output" {
   value = var.install_apoc
 }
+
+output "node_count_out" {
+  value = var.node_count
+}
