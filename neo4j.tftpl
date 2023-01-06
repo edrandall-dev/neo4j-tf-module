@@ -16,18 +16,11 @@ echo "Install APOC: ${installAPOC}" >> $TESTFILE
 wget -O /tmp/neotechnology.gpg.key http://debian.neo4j.org/neotechnology.gpg.key
 rpm --import /tmp/neotechnology.gpg.key
 
-cat <<EOF>  /etc/yum.repos.d/neo4j.repo
-[neo4j]
-name=Neo4j Yum Repo
-baseurl=http://yum.neo4j.org/stable
-enabled=1
-gpgcheck=1
-EOF
 export NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
 yum install -y neo4j-enterprise
 
 #Install APOC if variable was set
-[ $installAPOC = "true" ] && { mv /var/lib/neo4j/labs/apoc-*-core.jar /var/lib/neo4j/plugins }
+[ $installAPOC = "true" ] && { mv /var/lib/neo4j/labs/apoc-*-core.jar /var/lib/neo4j/plugins; }
  
 # 2 - Configure Neo4j
 
@@ -36,8 +29,6 @@ sed -i s~#server.unmanaged_extension_classes=org.neo4j.examples.server.unmanaged
 sed -i s/#dbms.security.procedures.unrestricted=my.extensions.example,my.procedures.*/dbms.security.procedures.unrestricted=gds.*,apoc.*,bloom.*/g /etc/neo4j/neo4j.conf
 echo "dbms.security.http_auth_allowlist=/,/browser.*,/bloom.*" >> /etc/neo4j/neo4j.conf
 echo "dbms.security.procedures.allowlist=apoc.*,gds.*,bloom.*" >> /etc/neo4j/neo4j.conf
-
-
 
 #3 - Start (and enable) Neo4j
 systemctl start neo4j

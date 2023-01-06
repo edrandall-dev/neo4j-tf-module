@@ -63,3 +63,12 @@ variable "neo4j_password" {
 variable "install_apoc" {
   description = "Determine if the APOC library is required"
 }
+
+variable "neo4j-ami-list" {
+  description = "A map containing the neo4j AMIs"
+  type = map(string)
+  default = {
+    "us-east-1" = "ami-0e400af847eb9a531"
+    "eu-west-1" = "ami-0f91decef80d7d93b"
+  }
+}

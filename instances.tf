@@ -1,6 +1,8 @@
 resource "aws_instance" "neo4j_instance" {
   count                  = var.node_count
-  ami                    = data.aws_ami.latest_amazon.id
+  //ami                  = data.aws_ami.latest_amazon.id
+  ami                    = var.neo4j-ami-list[var.target_region]
+
   instance_type          = var.instance_type
   key_name               = aws_key_pair.neo4j_ec2_key.id
   subnet_id              = aws_subnet.neo4j_public_subnet[count.index].id
