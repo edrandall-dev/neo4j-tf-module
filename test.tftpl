@@ -10,9 +10,16 @@ echo "GDS Key: ${gdsKey}" >> $TESTFILE
 echo "Bloom Key: ${bloomKey}" >> $TESTFILE
 echo "Password: ${password}" >> $TESTFILE
 echo "Install APOC: ${installAPOC}" >> $TESTFILE
-echo "Node Count: ${nodeCount} >> $TESTFILE"
+echo "Node Count: ${nodeCount}" >> $TESTFILE
 
+echo "Subnet1: ${subnet1}" >> $TESTFILE
+echo "Subnet2: ${subnet2}" >> $TESTFILE
+echo "Subnet3: ${subnet3}" >> $TESTFILE
 
-10.123.1.  99
-10.123.1.  99
-10.123.1.  99
+echo "${subnet1} | cut -d . -f 4" >> $TESTFILE
+echo "${subnet2} | cut -d . -f 4" >> $TESTFILE
+echo "${subnet3} | cut -d . -f 4" >> $TESTFILE
+
+echo "${subnet1} | cut -d . -f 4".99 >> $TESTFILE
+echo "${subnet2} | cut -d . -f 4".99 >> $TESTFILE
+echo "${subnet3} | cut -d . -f 4".99 >> $TESTFILE

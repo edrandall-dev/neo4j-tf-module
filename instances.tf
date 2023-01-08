@@ -24,6 +24,11 @@ resource "aws_instance" "neo4j_instance" {
       installAPOC = var.install_apoc
       nodeCount = var.node_count
       
+      subnets = aws_subnet.neo4j_public_subnet[*].id
+  
+      subnet1 = aws_subnet.neo4j_public_subnet[0].cidr_block
+      subnet2 = aws_subnet.neo4j_public_subnet[1].cidr_block
+      subnet3 = aws_subnet.neo4j_public_subnet[2].cidr_block
     }
   )
 
