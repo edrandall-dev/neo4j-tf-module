@@ -31,3 +31,7 @@ output "install_apoc_output" {
 output "node_count_out" {
   value = var.node_count
 }
+
+output "private_ip_output" {
+  value = aws_subnet.neo4j_public_subnet[0].cidr_block
+}

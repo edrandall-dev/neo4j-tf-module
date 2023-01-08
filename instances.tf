@@ -8,13 +8,14 @@ resource "aws_instance" "neo4j_instance" {
   subnet_id              = aws_subnet.neo4j_public_subnet[count.index].id
   vpc_security_group_ids = ["${aws_security_group.neo4j_sg.id}"]
 
+  private_ip             = cidrhost("${aws_subnet.neo4j_public_subnet[count.index].cidr_block}", 99)
+  
   //iam_instance_profile = aws_iam_instance_profile.neo4j_ssr_ssm_instance_profile.name
   //depends_on = [aws_lb.neo4j_lb]
 
   user_data = templatefile(
-    "${path.module}/neo4j.tftpl",
+    "${path.module}/test.tftpl",
     {
-      lb_fqdn = aws_lb.neo4j_lb.dns_name
       installGDS = var.install_gds
       installBloom = var.install_bloom
       gdsKey = var.gds_key
@@ -22,6 +23,7 @@ resource "aws_instance" "neo4j_instance" {
       password = var.neo4j_password
       installAPOC = var.install_apoc
       nodeCount = var.node_count
+      
     }
   )
 
@@ -30,3 +32,5 @@ resource "aws_instance" "neo4j_instance" {
     "Terraform" = true
   }
 }
+
+
