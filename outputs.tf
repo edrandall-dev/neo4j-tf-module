@@ -1,8 +1,10 @@
+/*
 output "ssh_commands" {
   value = [  
     for key, value in aws_instance.neo4j_instance[*].public_ip: "ssh -o StrictHostKeyChecking=no -i ${var.private_key_path} ec2-user@${value}"
   ]
 }
+*/
 
 output "install_gds_output" {
   value = var.install_gds
